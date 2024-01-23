@@ -1,0 +1,36 @@
+{
+    "name": "mini-ali-oss",
+    "version": "0.0.0",
+    "description": "轻量的阿里云OSS库",
+    "type": "module",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.esm.js",
+    "keywords": [
+        "mini",
+        "tiny",
+        "mini-ali-oss",
+        "ali-oss"
+    ],
+    "license": "MIT",
+    "author": "zaoangod",
+    "homepage": "https://gitee.com/zaoangod/mini-ali-oss",
+    "repository": {
+        "type": "git",
+        "url": "https://gitee.com/zaoangod/mini-ali-oss.git"
+    },
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "rollup -c",
+        "prettier": "prettier --write src/"
+    },
+    "devDependencies": {
+        "tslib": "2.6.2",
+        "rollup": "4.9.6",
+        "prettier": "3.2.4",
+        "typescript": "5.3.3",
+        "@rollup/plugin-typescript": "11.1.6"
+    }
+}
