@@ -1,4 +1,5 @@
 import { Bin } from './bin'
+import { FilePicker } from './lib/file-picker'
 
 export class Service {
     private readonly bin: Bin
@@ -7,9 +8,15 @@ export class Service {
         this.bin = bin
     }
 
+    // 选择文件
+    async choose() {
+        let picker: FilePicker = new FilePicker()
+        return await picker.choose()
+    }
+
     // 上传文件
-    async upload(source: string, object: Blob | ArrayBuffer) {
-        return this.bin.uploadObject(source, object)
+    async upload(source: string, file: Blob | ArrayBuffer) {
+        return this.bin.uploadObject(source, file)
     }
 
     // 删除文件

@@ -3,5 +3,5 @@ import Service from './service'
 
 export default {
     Bin,
-    Service
+    Service,
 }

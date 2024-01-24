@@ -14,7 +14,7 @@ export class Bin {
         accessKeyId: '',
         accessKeySecret: '',
         bucket: '',
-        region: ''
+        region: '',
     }
 
     public constructor(config: Config) {
@@ -67,7 +67,7 @@ export class Bin {
         signs.push(`/${this.config.bucket}/${source}`)
 
         let signature: string = new SHA1('SHA-1', 'TEXT', {
-            hmacKey: { value: this.config.accessKeySecret, format: 'TEXT' }
+            hmacKey: { value: this.config.accessKeySecret, format: 'TEXT' },
         })
             .update(signs.join('\n'))
             .getHash('B64')
