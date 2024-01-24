@@ -3,23 +3,23 @@ import standard from './lib/standard'
 import Request, { CustomOption } from './lib/request'
 
 export interface Config {
-    accessKeyId: string
-    accessKeySecret: string
+    key: string
+    secret: string
     bucket: string
     region: string
 }
 
 export class Bin {
     private config: Config = {
-        accessKeyId: '',
-        accessKeySecret: '',
+        key: '',
+        secret: '',
         bucket: '',
         region: '',
     }
 
     public constructor(config: Config) {
-        this.config.accessKeyId = config.accessKeyId || ''
-        this.config.accessKeySecret = config.accessKeySecret || ''
+        this.config.key = config.key || ''
+        this.config.secret = config.secret || ''
         this.config.bucket = config.bucket || ''
         this.config.region = config.region || ''
     }
@@ -67,13 +67,13 @@ export class Bin {
         signs.push(`/${this.config.bucket}/${source}`)
 
         let signature: string = new SHA1('SHA-1', 'TEXT', {
-            hmacKey: { value: this.config.accessKeySecret, format: 'TEXT' },
+            hmacKey: { value: this.config.secret, format: 'TEXT' },
         })
             .update(signs.join('\n'))
             .getHash('B64')
             .toString()
 
-        return `OSS ${this.config.accessKeyId}:${signature}`
+        return `OSS ${this.config.key}:${signature}`
     }
 
     clean(source: string) {

@@ -1,11 +1,11 @@
-import { Bin } from './bin'
+import { Bin, Config } from './bin'
 import { FilePicker } from './lib/file-picker'
 
 export class Service {
     private readonly bin: Bin
 
-    constructor(bin: Bin) {
-        this.bin = bin
+    constructor(config: Config) {
+        this.bin = new Bin(config)
     }
 
     // 选择文件

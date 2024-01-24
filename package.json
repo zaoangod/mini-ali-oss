@@ -19,6 +19,7 @@
         "url": "https://gitee.com/zaoangod/mini-ali-oss.git"
     },
     "files": [
+        "src",
         "dist",
         "README.md"
     ],

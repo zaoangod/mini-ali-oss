@@ -1,13 +1,13 @@
 import mitt, { Emitter } from './mitt'
 
 export type FileEvent = {
-    [key: string]: FileData;
+    [key: string]: FileData
 }
 
 export type FileData = {
-    file?: Array<File>;
-    state?: boolean;
-    message?: string;
+    file?: Array<File>
+    state?: boolean
+    message?: string
 }
 
 export interface FilePickerOption {
@@ -17,7 +17,7 @@ export interface FilePickerOption {
 
 export const defaultOption = {
     multiple: false,
-    accept: '*'
+    accept: '*',
 }
 
 export class FilePicker {
