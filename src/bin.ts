@@ -14,7 +14,7 @@ export class Bin {
         key: '',
         secret: '',
         bucket: '',
-        region: '',
+        region: ''
     }
 
     public constructor(config: Config) {
@@ -46,7 +46,7 @@ export class Bin {
         header['Content-MD5'] = ''
         header['Content-Type'] = this.contentType(source)
         header['Authorization'] = await this.signature(method, source, header)
-        const baseURL: string = `http://${this.config.bucket}.${this.config.region}.aliyuncs.com/`
+        const baseURL: string = `http://${this.config.bucket}.${this.config.region}.aliyuncs.com`
         return { baseURL, header }
     }
 
@@ -67,7 +67,7 @@ export class Bin {
         signs.push(`/${this.config.bucket}/${source}`)
 
         let signature: string = new SHA1('SHA-1', 'TEXT', {
-            hmacKey: { value: this.config.secret, format: 'TEXT' },
+            hmacKey: { value: this.config.secret, format: 'TEXT' }
         })
             .update(signs.join('\n'))
             .getHash('B64')

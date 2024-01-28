@@ -14,7 +14,7 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "pretty": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "strict": true,
         "target": "ESNext",
         "declaration": true,

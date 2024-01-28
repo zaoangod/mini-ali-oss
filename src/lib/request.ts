@@ -17,7 +17,6 @@ export async function create(url: string, method: string, data?: Record<string, 
         credentials: 'same-origin',
         referrerPolicy: 'no-referrer',
     }
-    console.info('init.headers:', init.headers)
     if (method == 'POST' || method == 'PUT') {
         init.body = JSON.stringify(data || {})
     }
