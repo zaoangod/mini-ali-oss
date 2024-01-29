@@ -1,6 +1,6 @@
 {
     "name": "mini-ali-oss",
-    "version": "0.0.4",
+    "version": "0.0.1",
     "description": "轻量的阿里云OSS库",
     "type": "module",
     "types": "dist/index.d.ts",
