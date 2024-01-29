@@ -5,8 +5,9 @@ export interface Config {
     region: string;
 }
 export declare class Bin {
+    private debug;
     private config;
-    constructor(config: Config);
+    constructor(config: Config, debug?: boolean);
     uploadObject(source: string, object: Blob | ArrayBuffer): Promise<Response>;
     removeObject(source: string, header?: Record<string, any>): Promise<Response>;
     requestConfig(method: string, source: string, header?: Record<string, any>): Promise<{

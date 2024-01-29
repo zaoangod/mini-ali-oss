@@ -18,7 +18,8 @@ export interface RemoveResult {
 }
 export declare class Service {
     private readonly bin;
-    constructor(config: Config);
+    private readonly debug;
+    constructor(config: Config, debug?: boolean);
     choose(): Promise<FileData>;
     upload(source: string, file: Blob | ArrayBuffer): Promise<Result<UploadResult>>;
     remove(source: string): Promise<Result<RemoveResult>>;
