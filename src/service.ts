@@ -25,9 +25,11 @@ export interface RemoveResult {
 
 export class Service {
     private readonly bin: Bin
+    private readonly debug: boolean
 
-    constructor(config: Config) {
+    constructor(config: Config, debug: boolean = false) {
         this.bin = new Bin(config)
+        this.debug = debug
     }
 
     // 选择文件
@@ -39,6 +41,10 @@ export class Service {
     // 上传文件
     async upload(source: string, file: Blob | ArrayBuffer): Promise<Result<UploadResult>> {
         let response: Response = await this.bin.uploadObject(source, file)
+        if (this.debug) {
+            console.info('Service -> upload, response:', response)
+            console.info('Service -> upload, header:', response.headers)
+        }
         if (response.ok && response.status == 200) {
             let header: Headers = response.headers
             return {
@@ -68,6 +74,10 @@ export class Service {
     // 删除文件
     async remove(source: string): Promise<Result<RemoveResult>> {
         let response: Response = await this.bin.removeObject(source)
+        if (this.debug) {
+            console.info('Service -> remove, response:', response)
+            console.info('Service -> remove, header:', response.headers)
+        }
         let header: Headers = response.headers
         let result: Result<RemoveResult> = {
             complete: false,

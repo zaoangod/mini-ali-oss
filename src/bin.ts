@@ -10,6 +10,7 @@ export interface Config {
 }
 
 export class Bin {
+    private debug: boolean
     private config: Config = {
         key: '',
         secret: '',
@@ -17,11 +18,12 @@ export class Bin {
         region: ''
     }
 
-    public constructor(config: Config) {
+    public constructor(config: Config, debug: boolean = false) {
         this.config.key = config.key || ''
         this.config.secret = config.secret || ''
         this.config.bucket = config.bucket || ''
         this.config.region = config.region || ''
+        this.debug = debug
     }
 
     async uploadObject(source: string, object: Blob | ArrayBuffer) {
@@ -47,6 +49,10 @@ export class Bin {
         header['Content-Type'] = this.contentType(source)
         header['Authorization'] = await this.signature(method, source, header)
         const baseURL: string = `http://${this.config.bucket}.${this.config.region}.aliyuncs.com`
+        if (this.debug) {
+            console.info('Bin -> requestConfig, header:', header)
+            console.info('Bin -> requestConfig, baseURL:', baseURL)
+        }
         return { baseURL, header }
     }
 
@@ -100,6 +106,7 @@ export class Bin {
                 })
             }
         })
+        if (this.debug) console.info('Bin -> contentType, type:', type)
         return type
     }
 }
