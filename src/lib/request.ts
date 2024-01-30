@@ -2,10 +2,10 @@ export interface CustomOption {
     header?: Record<string, any>
 }
 
-export async function create(url: string, method: string, data?: Record<string, any> | Array<Record<string, any>>, option?: CustomOption): Promise<Response> {
+export async function create(url: string, method: string, object: null | undefined | Blob | ArrayBuffer, option?: CustomOption): Promise<Response> {
     const header: Record<string, any> = {
         'Content-Type': 'application/json',
-        ...(option?.header || {}),
+        ...(option?.header || {})
     }
     method = (method || 'GET').toUpperCase()
     const init: RequestInit = {
@@ -15,14 +15,14 @@ export async function create(url: string, method: string, data?: Record<string, 
         cache: 'no-cache',
         redirect: 'follow',
         credentials: 'same-origin',
-        referrerPolicy: 'no-referrer',
+        referrerPolicy: 'no-referrer'
     }
-    if (method == 'POST' || method == 'PUT') {
-        init.body = JSON.stringify(data || {})
+    if (!!object) {
+        init.body = object
     }
     return fetch(new Request(url, init))
 }
 
 export default {
-    create,
+    create
 }

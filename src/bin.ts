@@ -95,6 +95,8 @@ export class Bin {
         if (source_suffix.length != 1) {
             return ''
         }
+        console.info(source)
+        console.info(source_suffix)
         let type: string = ''
         Object.keys(standard).forEach((key: string) => {
             let suffix_list: string[] = standard[key]
@@ -106,7 +108,7 @@ export class Bin {
                 })
             }
         })
-        if (this.debug) console.info('Bin -> contentType, type:', type)
+        console.info('Bin -> contentType, type:', type)
         return type
     }
 }
